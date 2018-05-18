@@ -1,0 +1,53 @@
+'use strict';
+
+class _Node {
+  constructor(data, next) {
+    this.data = data;
+    this.next = next;
+  }
+}
+//Creates a node containing the data 
+//and a reference to the next item
+
+class Stack {
+  constructor() {
+    this.top = null;
+  }
+
+  push(data) {
+       
+    if (this.top === null) {
+      this.top = new _Node(data, null);
+      return this.top;
+      //if the top of the stack is empty, then 
+      //the data will be the top of the stack
+    }
+
+    const node = new _Node(data, this.top);
+    this.top = node;
+    //if the top already has something then 
+    //create a new node add data to the new node
+    //have the pointer point to the top 
+  }
+  pop() {
+    const node = this.top;
+    this.top = node.next;
+    return node.data;
+    //in order to remove the top of the stack, you have to point
+    //the pointer to the next item and that next item becomes the
+    //top of the stack
+  }
+
+}
+function main() {
+  const starTrek = new Stack;
+  starTrek.push('Kirk');
+
+
+  console.log(JSON.stringify(starTrek));
+  return starTrek;
+}
+main();
+
+
+
