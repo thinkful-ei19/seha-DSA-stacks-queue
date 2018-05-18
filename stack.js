@@ -68,14 +68,14 @@ function display(stack) {
   if (currNode === null) {
     throw new Error('Nothing to display');
   }
-  let res = peek(stack);
-
+  let res = currNode.value;
   while (currNode.next) {
     currNode = currNode.next;
     res = currNode.data + ', ' + res;
   }
   return res;
 }
+
 function main() {
   const starTrek = new Stack;
   starTrek.push('Kirk');
