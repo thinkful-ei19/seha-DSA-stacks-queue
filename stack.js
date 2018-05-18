@@ -57,13 +57,13 @@ main();
 function peek(stack) {
   let lastNode = stack.top;
   stack.top=lastNode.next;
-  console.log(lastNode.value);
+  //console.log(lastNode.value);
   if (lastNode === null) {
     throw new Error('Stack is empty');
   }
   return lastNode;
 }
-//console.log(peek(main()));
+console.log(peek(main()));
 
 function display(stack) {
   let firstNode = stack.top;
@@ -74,5 +74,23 @@ function display(stack) {
 }
 console.log(display(main()));
 
+function is_palindrome(s) {
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+  let newS = new Stack();
+  for(let i=0; i< s.length; i++){
+    newS.push(s[i]);
+  }
+  for(let i=0; i <s.length/2; i++){
+    if (s[i] !== newS.pop()){
+      return false;
+    }else{
+      return true;
+    }
+  }
+}
 
+console.log(is_palindrome('dad'));
+console.log(is_palindrome('A man, a plan, a canal: Panama'));
+console.log(is_palindrome('1001'));
+console.log(is_palindrome('Tauhida'));
 
