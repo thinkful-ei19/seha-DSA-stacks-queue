@@ -39,6 +39,43 @@ class Stack {
   }
 
 }
+
+function peek(stack) {
+
+  let lastNode = stack.top;
+  //   stack.top=lastNode.next;
+  //   //console.log(lastNode.value);
+  //   if (lastNode === null) {
+  //     throw new Error('Stack is empty');
+  //   }
+  return lastNode.data;
+}
+
+//console.log(peek(main()));
+
+// function display(stack) {
+//   let firstNode = stack.top;
+//   while(firstNode.next !== null){
+//     firstNode = firstNode.next;
+//   }
+//   return firstNode;
+// }
+// console.log(display(main()));
+
+function display(stack) {
+  let currNode = stack.top;
+
+  if (currNode === null) {
+    throw new Error('Nothing to display');
+  }
+  let res = peek(stack);
+
+  while (currNode.next) {
+    currNode = currNode.next;
+    res = currNode.data + ', ' + res;
+  }
+  return res;
+}
 function main() {
   const starTrek = new Stack;
   starTrek.push('Kirk');
@@ -48,31 +85,11 @@ function main() {
 
   starTrek.pop();
   starTrek.pop();
-
   console.log(JSON.stringify(starTrek));
   return starTrek;
+
 }
 main();
-
-function peek(stack) {
-  let lastNode = stack.top;
-  stack.top=lastNode.next;
-  //console.log(lastNode.value);
-  if (lastNode === null) {
-    throw new Error('Stack is empty');
-  }
-  return lastNode;
-}
-console.log(peek(main()));
-
-function display(stack) {
-  let firstNode = stack.top;
-  while(firstNode.next !== null){
-    firstNode = firstNode.next;
-  }
-  return firstNode;
-}
-console.log(display(main()));
 
 function is_palindrome(s) {
   s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
@@ -93,4 +110,50 @@ console.log(is_palindrome('dad'));
 console.log(is_palindrome('A man, a plan, a canal: Panama'));
 console.log(is_palindrome('1001'));
 console.log(is_palindrome('Tauhida'));
+
+function matchingParan(string){
+  const openP =new Stack();
+  const closeP =new Stack();
+  let oP =0;
+  let cP=0;
+  for(let i=0; i < string.length; i++) {
+    if(string[i] === '('){
+      openP.push(i);
+      oP++;
+    }else if(string[i] === ')') {
+      closeP.push(i);
+      cP++;
+    }}
+  if(oP === cP){
+    return true;
+  }else if(oP > cP){
+    let removed= openP.pop();
+    return `Remove open paran at: ${removed}`;
+  }else if(oP < cP){
+    let removed=closeP.pop();
+    return `Remove close paran at: ${removed}`;
+  }
+}
+console.log(matchingParan('((()))'));
+console.log(matchingParan('(((fff))))))'));
+
+function sort(stack){
+  let newStack = new Stack();
+  while(stack.top){
+    let lastStack =stack.pop();
+    console.log(lastStack);
+    while(newStack.top && peek(newStack) > lastStack){
+      stack.push(newStack.pop());
+    }
+    newStack.push(lastStack);
+  }
+  return display(newStack);
+}
+const testSort = new Stack;
+testSort.push(16);
+testSort.push(5);
+testSort.push(35);
+testSort.push(24);
+console.log(sort(testSort));
+
 
