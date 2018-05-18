@@ -42,12 +42,37 @@ class Stack {
 function main() {
   const starTrek = new Stack;
   starTrek.push('Kirk');
+  starTrek.push('Spock');
+  starTrek.push('McCoy');
+  starTrek.push('Scotty');
 
+  starTrek.pop();
+  starTrek.pop();
 
   console.log(JSON.stringify(starTrek));
   return starTrek;
 }
 main();
+
+function peek(stack) {
+  let lastNode = stack.top;
+  stack.top=lastNode.next;
+  console.log(lastNode.value);
+  if (lastNode === null) {
+    throw new Error('Stack is empty');
+  }
+  return lastNode;
+}
+//console.log(peek(main()));
+
+function display(stack) {
+  let firstNode = stack.top;
+  while(firstNode.next !== null){
+    firstNode = firstNode.next;
+  }
+  return firstNode;
+}
+console.log(display(main()));
 
 
 
