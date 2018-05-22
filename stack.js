@@ -156,4 +156,4 @@ testSort.push(35);
 testSort.push(24);
 console.log(sort(testSort));
 
-
+module.exports = Stack;

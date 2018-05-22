@@ -1,4 +1,6 @@
 'use strict';
+const Stack = require('./stack');
+const stack =new Stack();
 
 //Creates a node containing the data and a reference to the next item
 class _Node {
@@ -56,6 +58,22 @@ class Queue {
   //runtime of removing an item from a queue is constant O(1)
 }
 
+// class stackQueue {
+//   constructor() {
+//     this.stack1 = stack;
+//     this.stack2 = stack;
+//   }
+//   enqueueS(value) {
+//     this.stack1.push(value);
+//   }
+//   dequeueS(){
+
+   
+  
+//   }
+
+// }
+
 function main() {
   const starTrekQ = new Queue;
   starTrekQ.enqueue('Kirk');
@@ -69,7 +87,10 @@ function main() {
   // console.log(starTrekQ);
   // return starTrekQ;
   console.log(display(starTrekQ));
-  
+
+  // let testQS = new stackQueue();
+  // testQS.enque('hello');
+  // console.log(testQS);
 }
 main();
 
@@ -91,5 +112,52 @@ function display(queue){
   }
   return res;
 }
- 
 
+class stackQueue{
+  constructor(){
+    this.stack1= new Stack();
+    this.stack2= new Stack();
+  }
+
+  enqueue(x){
+    this.stack1.push(x); 
+
+  }
+  dequeue() {
+    if (!this.stack1.top && !this.stack2.top){
+      return null;
+    } 
+    if(!this.stack2.top){
+      while(this.stack1.top){
+        this.stack2.push(this.stack1.pop());
+      }
+    }
+    return this.stack2.pop();
+  }
+}
+var que = new stackQueue();
+que.enqueue(3);
+que.enqueue(4);
+que.enqueue(5);
+que.enqueue(6);
+que.dequeue();
+que.dequeue();
+que.dequeue();
+
+console.log(JSON.stringify(que));
+console.log(que.dequeue());
+//que.enqueue(7);
+console.log(que.dequeue());
+console.log(JSON.stringify(que));
+
+
+
+
+// function squareDancers(sex, name){
+//   this.name = name;
+//   this.sex = sex;
+
+// }
+// var pairDancers= function (female, male){
+
+// };
